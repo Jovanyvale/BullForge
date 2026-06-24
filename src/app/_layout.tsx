@@ -1,15 +1,28 @@
+import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import HomeScreen from '.';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+
+  //Font
+  const [loaded] = useFonts({
+    Zalando: require('../../assets/fonts/ZalandoSans.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      < ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme
+      }>
+        <HomeScreen />
+      </ThemeProvider >
+    </SafeAreaProvider>
   );
 }
