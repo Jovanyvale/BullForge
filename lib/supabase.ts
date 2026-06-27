@@ -8,4 +8,4 @@ if (!supabaseKey) {
   throw new Error('Missing Supabase public key in environment')
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(supabaseUrl, supabaseKey)
